@@ -16,6 +16,7 @@ tt = "sensor/temperatura"
 client = mqtt.Client(client_id = 'NODE:%d-%d' % (AREA_ID,SENSOR_ID),protocol = mqtt.MQTTv31)
 # conecta no broker
 #client.connect("192.168.99.100", 1883)
+#client.connect("iot.eclipse.org", 1883)
 client.connect("iot.eclipse.org", 1883)
 # ws://test.mosquitto.org:8080/mqtt
 

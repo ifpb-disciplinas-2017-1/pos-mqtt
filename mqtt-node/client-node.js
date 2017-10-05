@@ -22,4 +22,4 @@ var iv = setInterval( function() {
   var randInt = Math.floor(Math.random()*100);
   client.publish('sensor/temperatura', ''+randInt);
   console.log('msg:',randInt);
-}, 2500 );
+}, 200 );

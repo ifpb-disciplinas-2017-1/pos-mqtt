@@ -29,8 +29,6 @@ public class ClientMQTT {
             MqttClient client = new MqttClient(broker, clientId, dataStore);
             MqttConnectOptions connOpts = new MqttConnectOptions();
             connOpts.setCleanSession(true);
-//            connOpts.setUserName("mosquitto");
-//            connOpts.setPassword("".toCharArray());
             System.out.println("Conectando ao broker: " + broker);
             client.setCallback(new ClienteCall());
             client.connect(connOpts);
@@ -49,8 +47,9 @@ public class ClientMQTT {
         }
 
         @Override
-        public void messageArrived(String string, MqttMessage mm) throws Exception {
+        public void messageArrived(String topic, MqttMessage mm) throws Exception {
             byte[] bytes = mm.getPayload();
+            System.out.println("topic: "+topic);
             System.out.println("array transmitido: "+Arrays.toString(bytes));
             System.out.println("valor: "+new String(bytes));
         }

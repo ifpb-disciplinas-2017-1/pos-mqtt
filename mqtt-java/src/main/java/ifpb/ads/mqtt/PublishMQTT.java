@@ -36,7 +36,7 @@ public class PublishMQTT {
             message.setQos(qos);
             System.out.println("Publicando a mensagem: " + content);
             sampleClient.publish(topic, message);
-            new Scanner(System.in).nextLine();
+//            new Scanner(System.in).nextLine();
             System.out.println("Mensagem publicada");
             sampleClient.disconnect();
             System.out.println("Disconectado");
