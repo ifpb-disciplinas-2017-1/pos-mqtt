@@ -1,8 +1,8 @@
 //http://mitsuruog.github.io/what-mqtt/
 var mqtt    = require('mqtt');
 var readline = require('readline');
-//var client  = mqtt.connect('ws://iot.eclipse.org:80/ws');
-var client  = mqtt.connect('ws://localhost:9001');
+var client  = mqtt.connect('ws://iot.eclipse.org:80/ws');
+//var client  = mqtt.connect('ws://localhost:9001');
 
 const rl = readline.createInterface({
   input: process.stdin,

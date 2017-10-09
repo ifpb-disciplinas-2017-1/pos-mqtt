@@ -22,7 +22,8 @@ public class ClientMQTT {
         String topic = "sensor/temperatura/#";
         int qos = 2;        
 //        String broker = "ws://test.mosquitto.org:8080";
-        String broker = "ws://localhost:9001";
+//        String broker = "ws://localhost:9001";
+        String broker = "ws://iot.eclipse.org:80/ws";
         String clientId = "job";
 
         try {

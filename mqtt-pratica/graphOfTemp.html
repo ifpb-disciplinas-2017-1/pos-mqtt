@@ -10,6 +10,11 @@
   <body onload="init();">
     <div id="content">
     	<div id="chart"></div>
+      <div>
+          <input type="submit" value="off" onclick="off();"/>
+          <input type="submit" value="on" onclick="on();"/>
+      </div>
+
     </div>
 
   <script src="http://code.shutterstock.com/rickshaw/vendor/d3.v2.js" type="text/javascript"></script>
@@ -46,19 +51,19 @@
       client.onMessageArrived = function (message) {
         console.log(message.destinationName, ' -- ', message.payloadString);
         var randInt = Math.floor(Math.random()*100);
-      	dados = (Math.sin(message.payloadString++ / 40) + 4) * (randInt + 400);
+      	dados = (Math.sin(message.payloadString++ / 40) + 4) * (randInt + 500);
         var data = { one:dados};
         graph.series.addData(data);
         graph.render();
+
+        if(message.payloadString>80) off(); 
       };
       var options = {
         timeout: 3,
         onSuccess: function () {
           console.log("conectado ao servidor");
           client.subscribe('sensor/temperatura', {qos: 1});
-          message = new Paho.MQTT.Message("100");
-          message.destinationName = "sensor/temperatura";
-          client.send(message);
+          
         },
         onFailure: function (message) {
           console.log("connexão falhou: " + message.errorMessage);
@@ -66,6 +71,16 @@
       };
     function init() {
         client.connect(options);
+    }
+    function off(){
+          message = new Paho.MQTT.Message("1");
+          message.destinationName = "atuador/temperatura";
+          client.send(message);
+    }
+    function on(){
+          message = new Paho.MQTT.Message("0");
+          message.destinationName = "atuador/temperatura";
+          client.send(message);
     }
       </script>
   </body>
